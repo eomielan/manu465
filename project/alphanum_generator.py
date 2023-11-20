@@ -1,4 +1,6 @@
 import os
+import secrets
+import string
 import time
 
 from colorama import Fore, Style, init
@@ -9,7 +11,7 @@ SLEEP_TIME = 2  # seconds
 
 
 def generate(length: int) -> str:
-    """Generate new random alphanumeric string of given length.
+    """Generate new random lowercase alphanumeric string of given length.
 
     Args:
         length (int): The length of the string to generate.
@@ -17,8 +19,9 @@ def generate(length: int) -> str:
     Returns:
         str: The randomly generated string.
     """
-    # TODO: Implement this function
-    return ""
+    characters = string.ascii_lowercase + string.digits  # Lowercase letters and digits
+    random_string = "".join(secrets.choice(characters) for _ in range(length))
+    return random_string
 
 
 def print_diff(expected: str, actual: str) -> None:
