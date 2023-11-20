@@ -1,3 +1,5 @@
+"""Script for generating random lowercase alphanumeric strings of specified length."""
+
 import os
 import secrets
 import string
@@ -40,9 +42,11 @@ def print_diff(expected: str, actual: str) -> None:
         else:
             print(Fore.RED + actual[i] + Style.RESET_ALL, end="")
 
-    # Print any remaining characters in the input string, if any are present
+    # Print any remaining characters, if any are present
     if len(actual) > len(expected):
         print(Fore.RED + actual[len(expected):] + Style.RESET_ALL, end="")
+    elif len(expected) > len(actual):
+        print(Fore.RED + "_" * (len(expected) - len(actual)) + Style.RESET_ALL, end="")
 
 
 def main():
