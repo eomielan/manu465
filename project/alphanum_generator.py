@@ -36,17 +36,30 @@ def print_diff(expected: str, actual: str) -> None:
     print("Expected: " + Fore.YELLOW + expected + Style.RESET_ALL)
     print("Actual:   ", end="")
 
+    correct = True
+    coloured_string = ""
+
     for i in range(min(len(expected), len(actual))):
         if expected[i] == actual[i]:
-            print(Fore.GREEN + actual[i] + Style.RESET_ALL, end="")
+            coloured_string += Fore.GREEN + actual[i] + Style.RESET_ALL
         else:
-            print(Fore.RED + actual[i] + Style.RESET_ALL, end="")
+            correct = False
+            coloured_string += Fore.RED + actual[i] + Style.RESET_ALL
 
     # Print any remaining characters, if any are present
     if len(actual) > len(expected):
-        print(Fore.RED + actual[len(expected):] + Style.RESET_ALL, end="")
+        correct = False
+        coloured_string += Fore.RED + actual[len(expected) :] + Style.RESET_ALL
     elif len(expected) > len(actual):
-        print(Fore.RED + "_" * (len(expected) - len(actual)) + Style.RESET_ALL, end="")
+        correct = False
+        coloured_string += (
+            Fore.RED + "_" * (len(expected) - len(actual)) + Style.RESET_ALL
+        )
+
+    if correct:
+        print(Fore.GREEN + "CORRECT!" + Style.RESET_ALL)
+    else:
+        print(coloured_string)
 
 
 def main():
