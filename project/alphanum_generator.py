@@ -33,9 +33,6 @@ def print_diff(expected: str, actual: str) -> None:
         expected (str): The expected string.
         actual (str): The actual string.
     """
-    print("Expected: " + Fore.YELLOW + expected + Style.RESET_ALL)
-    print("Actual:   ", end="")
-
     correct = True
     coloured_string = ""
 
@@ -59,6 +56,8 @@ def print_diff(expected: str, actual: str) -> None:
     if correct:
         print(Fore.GREEN + "CORRECT!" + Style.RESET_ALL)
     else:
+        print("Expected: " + Fore.YELLOW + expected + Style.RESET_ALL)
+        print("Actual:   ", end="")
         print(coloured_string)
 
 
